@@ -11,11 +11,11 @@ const isProdBuild = process.env.NODE_ENV === "production";
 
 const publicPath = isProdBuild
   ? `https://${process.env.VERCEL_URL}/`
-  : "http://localhost:5000/";
+  : "http://localhost:5000/_static";
 
 const bPublicPath = isProdBuild
   ? "https://ssr-react-streaming-example-b.vercel.app/"
-  : "http://localhost:5001/";
+  : "http://localhost:5001/_static";
 
 const shared = [
   {
@@ -46,7 +46,7 @@ const remotes = (__BUILD_ENV__) => ({
     __BUILD_ENV__ === "client"
       ? "ssr_react_streaming_example_b_pages"
       : WebpackNodeHttpChunkLoadingPlugin.httpExternal(
-          `${bPublicPath}_static/server/pages/remote-entry.js`
+          `${bPublicPath}server/pages/remote-entry.js`
         ),
 });
 
@@ -74,6 +74,7 @@ const baseConfig = {
   },
   plugins: [
     new webpack.DefinePlugin({
+      "process.env.VERCEL_URL": JSON.stringify(process.env.VERCEL_URL),
       "process.env.NODE_ENV": JSON.stringify(
         isProdBuild ? "production" : "development"
       ),
@@ -105,7 +106,7 @@ function runtimeConfig(__BUILD_ENV__) {
     target: __BUILD_ENV__ === "client" ? "web" : "async-node",
     output: {
       path: path.resolve(process.cwd(), "dist", __BUILD_ENV__, "runtime"),
-      publicPath: `${publicPath}_static/${__BUILD_ENV__}/runtime/`,
+      publicPath: `${publicPath}${__BUILD_ENV__}/runtime/`,
     },
     ...(__BUILD_ENV__ === "client" ? {} : { target: "node" }),
     plugins: [
@@ -127,7 +128,9 @@ function runtimeConfig(__BUILD_ENV__) {
           pages:
             __BUILD_ENV__ === "client"
               ? `${package.name}_pages`
-              : "../pages/remote-entry.js",
+              : WebpackNodeHttpChunkLoadingPlugin.httpExternal(
+                  `${publicPath}server/pages/remote-entry.js`
+                ),
         },
         exposes,
       }),
@@ -156,7 +159,7 @@ function pagesConfig(__BUILD_ENV__) {
     target: __BUILD_ENV__ === "client" ? "web" : "async-node",
     output: {
       path: path.resolve(process.cwd(), "dist", __BUILD_ENV__, "pages"),
-      publicPath: `${publicPath}_static/${__BUILD_ENV__}/pages/`,
+      publicPath: `${publicPath}${__BUILD_ENV__}/pages/`,
     },
     plugins: [
       ...baseConfig.plugins,
