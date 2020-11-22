@@ -10,7 +10,7 @@ const package = require("./package.json");
 const isProdBuild = process.env.NODE_ENV === "production";
 
 const publicPath = isProdBuild
-  ? "https://calm-crag-28364.herokuapp.com/"
+  ? `https://${process.env.VERCEL_URL}/`
   : "http://localhost:5001/";
 
 const shared = [

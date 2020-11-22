@@ -10,11 +10,11 @@ const package = require("./package.json");
 const isProdBuild = process.env.NODE_ENV === "production";
 
 const publicPath = isProdBuild
-  ? "https://obscure-reaches-66378.herokuapp.com/"
+  ? `https://${process.env.VERCEL_URL}/`
   : "http://localhost:5000/";
 
 const bPublicPath = isProdBuild
-  ? "https://calm-crag-28364.herokuapp.com/"
+  ? "https://ssr-react-streaming-example-b.vercel.app/"
   : "http://localhost:5001/";
 
 const shared = [

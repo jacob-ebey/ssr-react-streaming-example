@@ -14,7 +14,7 @@ app.use("/_static", express.static(path.resolve(process.cwd(), "dist")));
 
 const publicPath =
   process.env.NODE_ENV === "production"
-    ? "https://calm-crag-28364.herokuapp.com/"
+    ? `https://${process.env.VERCEL_URL}/`
     : "http://localhost:5001/";
 
 app.get("/*", async (req, res) => {
