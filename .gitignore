@@ -1,3 +1,4 @@
+.npmrc
 node_modules/
 
 ssr_react_streaming_example_a/_git/

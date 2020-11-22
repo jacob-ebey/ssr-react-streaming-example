@@ -908,10 +908,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@jacob-ebey/webpack-node-http-chunk-loading-plugin@0.0.1":
-  version "0.0.1"
-  resolved "https://npm.pkg.github.com/download/@jacob-ebey/webpack-node-http-chunk-loading-plugin/0.0.1/c20ba3afd5fc4f01857fbb181dc3c139e2e866fe16037b5cfa03ee8143bc81fd#ed53858262734673fd8e6434e64917d85a0dbaf0"
-  integrity sha512-xd6L/WAxVa8+PGKivpfjzZ5/ynRFxdcFa1Bk/eU+cPD1rLbhVsdooSa+bPb5ffp77rAsGZ8wKcn9NBKu6eWINA==
+"@jacob-ebey/webpack-node-http-chunk-loading-plugin@0.0.2":
+  version "0.0.2"
+  resolved "https://npm.pkg.github.com/download/@jacob-ebey/webpack-node-http-chunk-loading-plugin/0.0.2/477a76859a0a852b7b5228eb9ce041e5de5a8941fdc2360ef65d91f1dd281097#7eacae3fc6fe91c49f72f6dcd876903ab97421fe"
+  integrity sha512-vVl7WfQVX077x/8agOsp2SZUz6nmbx78k3lTgUx3pgXaHFBI957lnjJQpCqZbXG4tyuuUOTXuz/++8fOE4/wRA==
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
