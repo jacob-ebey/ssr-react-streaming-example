@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/_static/:match*", "destination": "/dist/:match*" },
+    { "source": "/_static/:match*", "destination": "/:match*" },
     { "source": "/", "destination": "/api/ssr?location=/" },
     { "source": "/b", "destination": "/api/ssr?location=/b" },
     { "source": "/b:match*", "destination": "/api/ssr?location=/b:match*" }
