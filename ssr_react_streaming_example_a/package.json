@@ -7,8 +7,9 @@
     "build": "webpack",
     "dev": "run-p dev:*",
     "dev:watch": "webpack --watch",
-    "dev:start": "nodemon --watch ./dist ./dist/server/runtime/main.js",
-    "start": "node ./dist/server/runtime/main.js"
+    "dev:start": "nodemon --watch ./dist ./devserver.js",
+    "start": "node ./dist/server/runtime/main.js",
+    "postinstall": "webpack"
   },
   "keywords": [],
   "author": "",
