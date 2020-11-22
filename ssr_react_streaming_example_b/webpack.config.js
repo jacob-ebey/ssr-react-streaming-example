@@ -115,7 +115,9 @@ function runtimeConfig(__BUILD_ENV__) {
           pages:
             __BUILD_ENV__ === "client"
               ? `${package.name}_pages`
-              : "../pages/remote-entry.js",
+              : WebpackNodeHttpChunkLoadingPlugin.httpExternal(
+                  `${publicPath}_static/server/pages/remote-entry.js`
+                ),
         },
       }),
     ],
