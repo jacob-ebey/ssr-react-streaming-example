@@ -1,6 +1,7 @@
 {
   "redirects": [
-    { "source": "/_static/:match*", "destination": "/dist/:match*" },
-    { "source": ":match*", "destination": "/api/ssr?location=:match*" }
+    { "source": "/_static/:match*", "destination": "/:match*" },
+    { "source": "/", "destination": "/api/ssr?location=/" },
+    { "source": "/:match*", "destination": "/api/ssr?location=:match*" }
   ]
 }
