@@ -9,7 +9,7 @@ const package = require("./package.json");
 
 const isProdBuild = process.env.NODE_ENV === "production";
 
-const publicPath = isProdBuild
+const publicPath = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}/`
   : "http://localhost:5000/_static";
 
