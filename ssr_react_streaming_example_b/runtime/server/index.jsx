@@ -3,25 +3,18 @@ import { renderToString } from "react-dom/server";
 import { matchPath, StaticRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 
-import path from "path";
-import express from "express";
-
 import routes from "../routing/routes";
-
-const app = express();
-
-app.use("/_static", express.static(path.resolve(process.cwd(), "dist")));
 
 const publicPath =
   process.env.NODE_ENV === "production"
     ? `https://${process.env.VERCEL_URL}/`
     : "http://localhost:5001/";
 
-app.get("/*", async (req, res) => {
+export default async function server(pathname) {
   let matchedPath = null;
   let matchedRoute = null;
   for (const route of routes) {
-    const match = matchPath(req.path, route);
+    const match = matchPath(pathname, route);
     if (match) {
       matchedPath = match;
       matchedRoute = route;
@@ -30,8 +23,7 @@ app.get("/*", async (req, res) => {
   }
 
   if (!matchedRoute) {
-    res.status(404).send("Page Not Found");
-    return;
+    return null;
   }
 
   const pageMod = await matchedRoute.import();
@@ -41,7 +33,7 @@ app.get("/*", async (req, res) => {
 
   const body = renderToString(
     <HelmetProvider context={helmetContext}>
-      <StaticRouter location={req.path}>
+      <StaticRouter location={pathname}>
         <Page />
       </StaticRouter>
     </HelmetProvider>
@@ -66,9 +58,5 @@ app.get("/*", async (req, res) => {
 </html>
 `;
 
-  res.send(html);
-});
-
-app.listen(process.env.PORT || 5001, () =>
-  console.log(`Listening on port ${process.env.PORT || 5001}`)
-);
+  return html;
+}
