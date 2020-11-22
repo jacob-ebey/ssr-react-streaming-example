@@ -7,5 +7,8 @@ export default async (req, res) => {
     const server = await initPromise;
     const html = await server("/b");
     res.send(html);
+  } catch (err) {
+    console.error(err);
+    res.send("ERROR :(");
   }
 };
