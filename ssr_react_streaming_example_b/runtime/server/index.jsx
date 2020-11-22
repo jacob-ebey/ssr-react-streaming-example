@@ -6,7 +6,7 @@ import { HelmetProvider } from "react-helmet-async";
 import routes from "../routing/routes";
 
 const publicPath =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV !== "development"
     ? `https://${process.env.VERCEL_URL}/`
     : "http://localhost:5001/";
 
