@@ -8,12 +8,12 @@ import routes from "../routing/routes";
 const publicPath =
   process.env.NODE_ENV === "production"
     ? `https://${process.env.VERCEL_URL}/`
-    : "http://localhost:5000/";
+    : "http://localhost:5000/_static/";
 
 const bPublicPath =
   process.env.NODE_ENV === "production"
     ? "https://ssr-react-streaming-example-b.vercel.app/"
-    : "http://localhost:5001/";
+    : "http://localhost:5001/_static/";
 
 export default async function server(pathname) {
   let matchedPath = null;
@@ -57,9 +57,9 @@ export default async function server(pathname) {
 
   <body ${helmet.bodyAttributes.toString()}>
     <div id="__app__">${body}</div>
-    <script src="${bPublicPath}_static/client/pages/remote-entry.js"></script>
-    <script src="${publicPath}_static/client/pages/remote-entry.js"></script>
-    <script src="${publicPath}_static/client/runtime/main.js"></script>
+    <script src="${bPublicPath}client/pages/remote-entry.js"></script>
+    <script src="${publicPath}client/pages/remote-entry.js"></script>
+    <script src="${publicPath}client/runtime/main.js"></script>
   </body>
 </html>
 `;
