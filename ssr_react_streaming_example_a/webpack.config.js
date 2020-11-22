@@ -107,6 +107,9 @@ function runtimeConfig(__BUILD_ENV__) {
     output: {
       path: path.resolve(process.cwd(), "dist", __BUILD_ENV__, "runtime"),
       publicPath: `${publicPath}${__BUILD_ENV__}/runtime/`,
+      ...(__BUILD_ENV__ === "server"
+        ? { libraryTarget: "commonjs-module" }
+        : {}),
     },
     ...(__BUILD_ENV__ === "client" ? {} : { target: "node" }),
     plugins: [

@@ -14,4 +14,4 @@ app.get("/*", async (req, res) => {
   res.end();
 });
 
-app.listen(5001, () => console.log("SERVER STARTED"));
+app.listen(5000, () => console.log("SERVER STARTED"));
