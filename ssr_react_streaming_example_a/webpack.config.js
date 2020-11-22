@@ -7,7 +7,7 @@ const FederationStatsPlugin = require("./federation-stats-plugin");
 
 const package = require("./package.json");
 
-const isProdBuild = process.env.NODE_ENV === "production";
+const isProdBuild = process.env.NODE_ENV !== "development";
 
 const publicPath = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}/`
