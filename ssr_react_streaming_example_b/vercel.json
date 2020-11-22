@@ -1,3 +1,0 @@
-{
-  "rewrites": [{ "source": "/_static/:match*", "destination": "/dist/:match*" }]
-}

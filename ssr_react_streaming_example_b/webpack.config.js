@@ -11,7 +11,7 @@ const isProdBuild = false; //process.env.NODE_ENV !== "development";
 
 const publicPath = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}/`
-  : "http://localhost:5001/";
+  : "http://localhost:5001/_static/";
 
 const shared = [
   {
@@ -59,6 +59,7 @@ const baseConfig = {
   },
   plugins: [
     new webpack.DefinePlugin({
+      "process.env.VERCEL_URL": JSON.stringify(process.env.VERCEL_URL),
       "process.env.NODE_ENV": JSON.stringify(
         isProdBuild ? "production" : "development"
       ),
@@ -90,7 +91,7 @@ function runtimeConfig(__BUILD_ENV__) {
     target: __BUILD_ENV__ === "client" ? "web" : "async-node",
     output: {
       path: path.resolve(process.cwd(), "dist", __BUILD_ENV__, "runtime"),
-      publicPath: `${publicPath}_static/${__BUILD_ENV__}/runtime/`,
+      publicPath: `${publicPath}${__BUILD_ENV__}/runtime/`,
       ...(__BUILD_ENV__ === "server"
         ? { libraryTarget: "commonjs-module" }
         : {}),
@@ -116,7 +117,7 @@ function runtimeConfig(__BUILD_ENV__) {
             __BUILD_ENV__ === "client"
               ? `${package.name}_pages`
               : WebpackNodeHttpChunkLoadingPlugin.httpExternal(
-                  `${publicPath}_static/server/pages/remote-entry.js`
+                  `${publicPath}server/pages/remote-entry.js`
                 ),
         },
       }),
@@ -145,7 +146,7 @@ function pagesConfig(__BUILD_ENV__) {
     target: __BUILD_ENV__ === "client" ? "web" : "async-node",
     output: {
       path: path.resolve(process.cwd(), "dist", __BUILD_ENV__, "pages"),
-      publicPath: `${publicPath}_static/${__BUILD_ENV__}/pages/`,
+      publicPath: `${publicPath}${__BUILD_ENV__}/pages/`,
     },
     plugins: [
       ...baseConfig.plugins,
