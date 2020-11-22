@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "ssr-react-streaming-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "workspaces": [
+    "ssr_react_streaming_example_a",
+    "ssr_react_streaming_example_b"
+  ],
+  "scripts": {
+    "dev": "run-p dev:*",
+    "dev:a": "yarn workspace ssr_react_streaming_example_a dev",
+    "dev:b": "yarn workspace ssr_react_streaming_example_b dev"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
